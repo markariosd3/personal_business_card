@@ -14,17 +14,18 @@
         .container { padding: 20px; }
         .image-container {
             position: relative;
-            width: 150px; /* Same width as image */
-            height: 150px;
+            width: 150px; /* Matches the image width */
             overflow: hidden;
             display: inline-block;
         }
         .image-container img {
             position: absolute;
-            width: 150px;
+            width: 100%; /* Ensure the image scales properly */
+            height: auto; /* Maintain aspect ratio */
             border-radius: 5%;
             transition: left 0.5s ease-in-out;
         }
+        
         .image-container img:first-child {
             left: 0;
         }
@@ -48,7 +49,7 @@
     <div class="container">
         <div class="image-container" id="imageSlider">
             <img src="MarkARios_profile_12-14-2024-removebg-preview.png" alt="Mark A. Rios">
-            <img src="markarios_personal_qr_code.png" alt="Revealed Image">
+            <img src="markarios_personal_qr_code.png" alt="Revealed QR Code for Mark A. Rios personal business card">
         </div>
         <h1>Mark A. Rios</h1>
         <p></p>
