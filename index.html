@@ -12,7 +12,25 @@
             color: white;
         }
         .container { padding: 20px; }
-        img { width: 150px; border-radius: 5%; }
+        .image-container {
+            position: relative;
+            width: 150px; /* Same width as image */
+            height: 150px;
+            overflow: hidden;
+            display: inline-block;
+        }
+        .image-container img {
+            position: absolute;
+            width: 150px;
+            border-radius: 5%;
+            transition: left 0.5s ease-in-out;
+        }
+        .image-container img:first-child {
+            left: 0;
+        }
+        .image-container img:last-child {
+            left: 100%;
+        }
         .btn {
             display: block;
             background-color: #fff;
@@ -28,7 +46,10 @@
 </head>
 <body>
     <div class="container">
-        <img src="MarkARios_profile_12-14-2024-removebg-preview.png" alt="Mark A. Rios">
+        <div class="image-container" id="imageSlider">
+            <img src="MarkARios_profile_12-14-2024-removebg-preview.png" alt="Mark A. Rios">
+            <img src="markarios_personal_qr_code.png" alt="Revealed Image">
+        </div>
         <h1>Mark A. Rios</h1>
         <p></p>
         
@@ -37,5 +58,13 @@
         <a class="btn" href="mailto:markrios.d3@gmail.com">✉️ Email markrios.d3@gmail.com</a>
         <a class="btn" href="markarios.vcf" download="markarios.vcf">📥 Save My Contact</a>
     </div>
+
+    <script>
+        document.getElementById("imageSlider").addEventListener("click", function() {
+            const images = this.getElementsByTagName("img");
+            images[0].style.left = "-100%";
+            images[1].style.left = "0";
+        });
+    </script>
 </body>
 </html>
