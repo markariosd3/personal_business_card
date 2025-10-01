@@ -59,15 +59,28 @@
         <a class="btn" href="markarios.vcf" download="markarios.vcf">📥 Save Contact</a>
         <a class="btn" href="https://www.instagram.com/iosmarkr/">📸 Instagram</a>
         <a class="btn" href="https://www.linkedin.com/in/markarios/">🔗in Linkedin</a>
+        <a class="btn" href="https://www.facebook.com/mark.rios1">📘 Facebook</a>
         <!-- <a class="btn" href="Mark Rios Resume.pdf">Resume</a> -->
         
     </div>
 
     <script>
+        let showingQR = false;
+        
         document.getElementById("imageSlider").addEventListener("click", function() {
             const images = this.getElementsByTagName("img");
-            images[0].style.left = "-100%";
-            images[1].style.left = "0";
+            
+            if (!showingQR) {
+                // Show QR code
+                images[0].style.left = "-100%";
+                images[1].style.left = "0";
+                showingQR = true;
+            } else {
+                // Show original picture
+                images[0].style.left = "0";
+                images[1].style.left = "100%";
+                showingQR = false;
+            }
         });
     </script>
 </body>
