@@ -8,21 +8,53 @@
         body { 
             font-family: Arial, sans-serif; 
             text-align: center; 
-            background-color: #121212; 
+            background:
+                radial-gradient(circle at 18% 18%, rgba(255, 255, 255, 0.28), transparent 0 16%, transparent 17%),
+                radial-gradient(circle at 82% 20%, rgba(160, 210, 255, 0.14), transparent 0 18%, transparent 19%),
+                radial-gradient(circle at 30% 80%, rgba(255, 255, 255, 0.10), transparent 0 16%, transparent 17%),
+                linear-gradient(135deg, #07111f 0%, #0b1f33 28%, #18314a 52%, #5c6c7b 78%, #d9dfe6 100%);
+            background-attachment: fixed;
             color: white;
+            min-height: 100vh;
+            margin: 0;
         }
-        .container { padding: 20px; }
+        .container {
+            padding: 28px 20px 36px;
+            margin: 28px auto;
+            width: min(92vw, 420px);
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.26), rgba(255, 255, 255, 0.10));
+            border: 1px solid rgba(255, 255, 255, 0.22);
+            border-radius: 32px;
+            box-shadow:
+                0 24px 60px rgba(0, 0, 0, 0.35),
+                inset 0 1px 0 rgba(255, 255, 255, 0.42),
+                inset 0 -1px 0 rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(22px) saturate(170%);
+            -webkit-backdrop-filter: blur(22px) saturate(170%);
+        }
         .image-container {
             position: relative;
             width: 300px; /* Same width as image */
-            height: 390px;
+            height: 300px;
+            border-radius: 0;
             overflow: hidden;
             display: inline-block;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.06));
+            border: 1px solid rgba(255, 255, 255, 0.24);
+            box-shadow:
+                0 18px 38px rgba(0, 0, 0, 0.28),
+                inset 0 1px 0 rgba(255, 255, 255, 0.35);
+            backdrop-filter: blur(18px) saturate(160%);
+            -webkit-backdrop-filter: blur(18px) saturate(160%);
+        }
+        .image-container.is-photo {
+            border-radius: 50%;
         }
         .image-container img {
             position: absolute;
-            width: 300px;
-            border-radius: 5%;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
             transition: left 0.5s ease-in-out;
         }
         .image-container img:first-child {
@@ -33,14 +65,24 @@
         }
         .btn {
             display: block;
-            background-color: #fff;
-            color: rgb(0, 0, 0);
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.34), rgba(255, 255, 255, 0.16));
+            color: rgba(255, 255, 255, 0.96);
             padding: 10px;
             margin: 10px auto;
             width: 80%;
             text-decoration: none;
-            border-radius: 10px;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.24);
+            box-shadow:
+                0 10px 22px rgba(0, 0, 0, 0.18),
+                inset 0 1px 0 rgba(255, 255, 255, 0.45);
+            backdrop-filter: blur(16px) saturate(170%);
+            -webkit-backdrop-filter: blur(16px) saturate(170%);
             font-size: 18px;
+        }
+        h1 {
+            margin: 18px 0 10px;
+            text-shadow: 0 1px 12px rgba(0, 0, 0, 0.28);
         }
     </style>
 </head>
@@ -48,14 +90,12 @@
 
     <div class="container">
         
-        <div class="image-container" id="imageSlider">
-            <img src="MarkRiosAI.jpg" alt="Mark Rios">
+        <div class="image-container is-photo" id="imageSlider">
+            <img src="2026-06-16_Mark_Rios.jpg" alt="Mark Rios">
             <img src="markarios_personal_qr_code.png" alt="Revealed Image">
         </div>
         
         <h1>Mark Rios</h1>
-        <h4><i>Clarity Under Pressure</i></h4>
-        <h3>For those making decisions that can't be undone.</h3>
         <a class="btn" href="sms:+15303078202">💬 Text (530) 307-8202</a>
         <a class="btn" href="https://www.linkedin.com/in/markarios/">🔗in Linkedin</a>
         
@@ -70,11 +110,13 @@
             
             if (!showingQR) {
                 // Show QR code
+                this.classList.remove("is-photo");
                 images[0].style.left = "-100%";
                 images[1].style.left = "0";
                 showingQR = true;
             } else {
                 // Show original picture
+                this.classList.add("is-photo");
                 images[0].style.left = "0";
                 images[1].style.left = "100%";
                 showingQR = false;
